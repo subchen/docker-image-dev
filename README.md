@@ -6,4 +6,6 @@
 * maven
 * tomcat
 * node
+* haproxy
+* keepalived
 

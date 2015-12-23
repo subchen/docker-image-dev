@@ -14,7 +14,7 @@ Supported tags and respective `Dockerfile` links
 
 ## Usages
 
-1. Use default `/etc/haproxy/haproxy.cfg`
+* Use default `/etc/haproxy/haproxy.cfg`
 
 ```bash
 docker run --rm -it --name haproxy \
@@ -23,7 +23,7 @@ docker run --rm -it --name haproxy \
   haproxy
 ```
 
-2. Use customized `/etc/haproxy/haproxy.cfg`
+* Use customized `/etc/haproxy/haproxy.cfg`
 
 ```bash
 docker run --rm -it --name haproxy \
