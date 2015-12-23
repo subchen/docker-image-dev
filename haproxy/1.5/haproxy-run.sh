@@ -11,7 +11,7 @@ if [ ! -f $HAPROXY_CFG ]; then
     index=$(expr $index + 1)
     serverlist="$serverlist  server web$index $server cookie web$index check\n"
   done
-  sed "s/{{serverlist}}/$serverlist/g" $HAPROXY_CFG.in > $HAPROXY_CFG
+  sed -e "s/{{serverlist}}/$serverlist/g" $HAPROXY_CFG.in > $HAPROXY_CFG
 fi
 
 exec /usr/sbin/haproxy -f $HAPROXY_CFG
