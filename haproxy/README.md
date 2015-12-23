@@ -20,7 +20,7 @@ Supported tags and respective `Dockerfile` links
 docker run --rm -it --name haproxy \
   -p 80:80 \
   -e HAPROXY_SERVERS="172.16.1.21:8080 172.16.1.22:8080" \
-  haproxy
+  subchen/haproxy
 ```
 
 * Use customized `/etc/haproxy/haproxy.cfg`
@@ -29,7 +29,7 @@ docker run --rm -it --name haproxy \
 docker run --rm -it --name haproxy \
   -p 80:80 \
   -v haproxy.cfg:/etc/haproxy/haproxy.cfg:ro \
-  haproxy
+  subchen/haproxy
 ```
 
 
