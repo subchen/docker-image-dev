@@ -1,0 +1,33 @@
+global
+  # local0: /var/log/message
+  log 127.0.0.1 local0
+  chroot /var/lib/haproxy
+  pidfile /var/run/haproxy.pid
+  maxconn 4096
+  stats socket /var/lib/haproxy/stats
+
+defaults
+  mode http
+  log global
+  option httplog
+  option dontlognull
+  option http-server-close
+  option forwardfor except 127.0.0.0/8
+  option redispatch
+  retries 3
+  timeout http-request 10s
+  timeout queue 1m
+  timeout connect 10s
+  timeout client 1m
+  timeout server 1m
+  timeout http-keep-alive 10s
+  timeout check 5s
+  maxconn 4096
+
+listen webapp
+  bind 0.0.0.0:80
+  balance source
+  cookie X-SID insert indirect
+  option httpchk HEAD /index.html HTTP/1.0
+  {{serverlist}}
+
