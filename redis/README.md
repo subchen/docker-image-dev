@@ -9,7 +9,7 @@ docker pull subchen/redis
 
 Supported tags and respective `Dockerfile` links
 
-* `3.0`, `latest` ([3.0/Dockerfile](https://github.com/subchen/docker-images/blob/master/redis/3.0/Dockerfile)
+* `3.0`, `latest` ([3.0/Dockerfile](https://github.com/subchen/docker-images/blob/master/redis/3.0/Dockerfile))
 
 
 ## Usages

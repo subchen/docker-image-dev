@@ -9,7 +9,7 @@ docker pull subchen/mongodb
 
 Supported tags and respective `Dockerfile` links
 
-* `3.2`, `latest` ([3.2/Dockerfile](https://github.com/subchen/docker-images/blob/master/mongodb/3.2/Dockerfile)
+* `3.2`, `latest` ([3.2/Dockerfile](https://github.com/subchen/docker-images/blob/master/mongodb/3.2/Dockerfile))
 
 
 ## Usages
