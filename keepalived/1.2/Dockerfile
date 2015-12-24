@@ -13,7 +13,7 @@ RUN yum makecache \
 
 COPY haproxy-check.sh /etc/keepalived/haproxy-check.sh
 COPY keepalived-run.sh /etc/keepalived/keepalived-run.sh
-COPY keepalived.cfg.in /etc/keepalived/keepalived.cfg.in
+COPY keepalived.conf.in /etc/keepalived/keepalived.conf.in
 
 CMD ["/etc/keepalived/keepalived-run.sh"]
 
