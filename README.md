@@ -8,4 +8,6 @@
 * node
 * haproxy
 * keepalived
+* redis
+* mongodb
 
