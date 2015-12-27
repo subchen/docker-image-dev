@@ -10,7 +10,7 @@ if [ ! -f $KEEPALIVED_CONF ]; then
   vip=${KEEPALIVED_VIP:-172.17.0.200}
 
   # master is 200, backup is 100
-  if [[ "$state" == "BACKUP" && "$priority" == "" ]]; then
+  if [[ "$KEEPALIVED_STATE" = "BACKUP" && "$KEEPALIVED_PRIORITY" = "" ]]; then
     priority=100
   fi
 
