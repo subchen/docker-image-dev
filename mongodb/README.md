@@ -60,19 +60,19 @@ docker run -d -it --name mongos-1 subchen/mongodb mongos --configdb "$MONGO_CFG_
 docker run -d -it --name mongos-2 subchen/mongodb mongos --configdb "$MONGO_CFG_SVR_LIST"
 docker run -d -it --name mongos-3 subchen/mongodb mongos --configdb "$MONGO_CFG_SVR_LIST"
 
-# start 3x3 mongo replset servers
-docker run -d -it --name mongo-repsetsvr-1-1 subchen/mongodb mongod --repsetsvr --replSet shard1
-docker run -d -it --name mongo-repsetsvr-1-2 subchen/mongodb mongod --repsetsvr --replSet shard1
-docker run -d -it --name mongo-repsetsvr-1-3 subchen/mongodb mongod --repsetsvr --replSet shard1
-docker run -d -it --name mongo-repsetsvr-2-1 subchen/mongodb mongod --repsetsvr --replSet shard2
-docker run -d -it --name mongo-repsetsvr-2-2 subchen/mongodb mongod --repsetsvr --replSet shard2
-docker run -d -it --name mongo-repsetsvr-2-3 subchen/mongodb mongod --repsetsvr --replSet shard2
-docker run -d -it --name mongo-repsetsvr-3-1 subchen/mongodb mongod --repsetsvr --replSet shard3
-docker run -d -it --name mongo-repsetsvr-3-2 subchen/mongodb mongod --repsetsvr --replSet shard3
-docker run -d -it --name mongo-repsetsvr-3-3 subchen/mongodb mongod --repsetsvr --replSet shard3
+# start 3x3 mongo shard servers
+docker run -d -it --name mongo-shardsvr-1-1 subchen/mongodb mongod --shardsvr --replSet shard1
+docker run -d -it --name mongo-shardsvr-1-2 subchen/mongodb mongod --shardsvr --replSet shard1
+docker run -d -it --name mongo-shardsvr-1-3 subchen/mongodb mongod --shardsvr --replSet shard1
+docker run -d -it --name mongo-shardsvr-2-1 subchen/mongodb mongod --shardsvr --replSet shard2
+docker run -d -it --name mongo-shardsvr-2-2 subchen/mongodb mongod --shardsvr --replSet shard2
+docker run -d -it --name mongo-shardsvr-2-3 subchen/mongodb mongod --shardsvr --replSet shard2
+docker run -d -it --name mongo-shardsvr-3-1 subchen/mongodb mongod --shardsvr --replSet shard3
+docker run -d -it --name mongo-shardsvr-3-2 subchen/mongodb mongod --shardsvr --replSet shard3
+docker run -d -it --name mongo-shardsvr-3-3 subchen/mongodb mongod --shardsvr --replSet shard3
 
 # init repset shard1
-docker run --rm -it subchen/mongodb mongo $(docker inspect -f "{{ .NetworkSettings.IPAddress }}" mongo-repsetsvr-1-1):27018
+docker run --rm -it subchen/mongodb mongo $(docker inspect -f "{{ .NetworkSettings.IPAddress }}" mongo-shardsvr-1-1):27018
 mongo > use admin
 mongo > rs.initiate({
     "_id" : "shard1",
@@ -84,7 +84,7 @@ mongo > rs.initiate({
 });
 
 # init repset shard2
-docker run --rm -it subchen/mongodb mongo $(docker inspect -f "{{ .NetworkSettings.IPAddress }}" mongo-repsetsvr-2-1):27018
+docker run --rm -it subchen/mongodb mongo $(docker inspect -f "{{ .NetworkSettings.IPAddress }}" mongo-shardsvr-2-1):27018
 mongo > use admin
 mongo > rs.initiate({
     "_id" : "shard2",
@@ -96,7 +96,7 @@ mongo > rs.initiate({
 });
 
 # init repset shard3
-docker run --rm -it subchen/mongodb mongo $(docker inspect -f "{{ .NetworkSettings.IPAddress }}" mongo-repsetsvr-3-1):27018
+docker run --rm -it subchen/mongodb mongo $(docker inspect -f "{{ .NetworkSettings.IPAddress }}" mongo-shardsvr-3-1):27018
 mongo > use admin
 mongo > rs.initiate({
     "_id" : "shard3",
