@@ -31,7 +31,7 @@ docker run -d --name node2 subchen/consul \
   consul agent -server -bootstrap-expect=3 -data-dir=/data -join=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' node1)
 
 docker run -d --name node3 subchen/consul \
-  consul agent -server -bootstrap-expect=3 -data-dir=/data/ -join=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' node1)
+  consul agent -server -bootstrap-expect=3 -data-dir=/data -join=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' node1)
 
 # 1 client
 docker run -d -p 8400:8400 -p 8500:8500 -p 8600:53/udp --name node4 subchen/consul \
