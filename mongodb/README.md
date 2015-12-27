@@ -31,7 +31,7 @@ docker run -d -it --name mongo-server-2 subchen/mongodb mongod --replSet repset
 docker run -d -it --name mongo-server-3 subchen/mongodb mongod --replSet repset
 
 # init replSet
-docker exec -it mongo-server-1 subchen/mongodb $(docker inspect -f "{{ .NetworkSettings.IPAddress }}" mongo-server-1):27017
+docker run --rm -it subchen/mongodb mongo $(docker inspect -f "{{ .NetworkSettings.IPAddress }}" mongo-server-1):27017
 mongo > rs.initiate({
     "_id" : "repset",
     "members" : [
@@ -56,9 +56,9 @@ MONGO_CFG_SRV_IP_2=$(docker inspect -f "{{ .NetworkSettings.IPAddress }}" mongo-
 MONGO_CFG_SRV_IP_3=$(docker inspect -f "{{ .NetworkSettings.IPAddress }}" mongo-configsvr-3)
 MONGO_CFG_SRV_LIST="$MONGO_CFG_SRV_IP_1:27019,$MONGO_CFG_SRV_IP_2:27019,$MONGO_CFG_SRV_IP_3:27019"
 
-docker run -d -it --name mongos-1 mongodb mongos --configdb "$MONGO_CFG_SRV_LIST"
-docker run -d -it --name mongos-2 mongodb mongos --configdb "$MONGO_CFG_SRV_LIST"
-docker run -d -it --name mongos-3 mongodb mongos --configdb "$MONGO_CFG_SRV_LIST"
+docker run -d -it --name mongos-1 subchen/mongodb mongos --configdb "$MONGO_CFG_SRV_LIST"
+docker run -d -it --name mongos-2 subchen/mongodb mongos --configdb "$MONGO_CFG_SRV_LIST"
+docker run -d -it --name mongos-3 subchen/mongodb mongos --configdb "$MONGO_CFG_SRV_LIST"
 
 # start 3x3 mongo replset servers
 docker run -d -it --name mongo-repsetsvr-1-1 subchen/mongodb mongod --repsetsvr --replSet shard1
