@@ -17,7 +17,7 @@ Supported tags and respective `Dockerfile` links
 * Use default configs in  `/etc/consul.d/`
 
 ```bash
-docker run -d -p 8400:8400 -p 8500:8500 -p 8600:53/udp --name consul-server subchen/consul
+docker run -d -p 8400:8400 -p 8500:8500 -p 53:8600/udp --name consul-server subchen/consul
 ```
 
 * consul clusters
@@ -34,11 +34,16 @@ docker run -d --name node3 subchen/consul \
   consul agent -server -bootstrap-expect=3 -data-dir=/data -join=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' node1)
 
 # 1 client
-docker run -d -p 8400:8400 -p 8500:8500 -p 8600:53/udp --name node4 subchen/consul \
+docker run -d -p 8400:8400 -p 8500:8500 -p 53:8600/udp --name node4 subchen/consul \
   consul agent -client=0.0.0.0 -data-dir=/data -ui-dir=/ui -join=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' node1)
+```
 
-# validate
+* validate
+
+```bash
 curl localhost:8500/v1/catalog/nodes
+
+dig @127.0.0.1 -p 53 node1.node.consul
 ```
 
 
