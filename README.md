@@ -10,4 +10,5 @@
 * keepalived
 * redis
 * mongodb
+* consul
 
