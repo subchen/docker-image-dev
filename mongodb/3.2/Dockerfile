@@ -24,12 +24,12 @@ RUN set -e \
 RUN set -e \
  && groupadd -r mongodb \
  && useradd -r -g mongodb mongodb \
- && mkdir -p /data/db \
- && chown -R mongodb:mongodb /data/db
+ && mkdir -p /data/db /data/configdb \
+ && chown -R mongodb:mongodb /data
 
-VOLUME /data/db
+VOLUME /data
 
-EXPOSE 27017
+EXPOSE 27017 27018 27019
 
 COPY docker-entrypoint.sh /sbin/docker-entrypoint.sh
 
