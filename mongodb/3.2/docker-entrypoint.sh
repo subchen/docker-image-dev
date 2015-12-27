@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-if [ "$1" = "mongod" ]; then
+if [[ "$1" = "mongod" || "$1" = "mongos" ]]; then
 
   #if [ -f /sys/kernel/mm/transparent_hugepage/enabled ]; then
   #  echo never > /sys/kernel/mm/transparent_hugepage/enabled
