@@ -47,5 +47,5 @@ VOLUME ["/data"]
 
 EXPOSE 8300 8301 8301/udp 8302 8302/udp 8400 8500 8600/udp
 
-CMD ["/usr/bin/consul", "agent", "-server", "-bootstrap", "-data-dir=/data", "-ui-dir=/ui", "-config-dir=/etc/consul.d"]
+CMD ["/usr/bin/consul", "agent", "-server", "-bootstrap", "-client=0.0.0.0", "-data-dir=/data", "-ui-dir=/ui", "-config-dir=/etc/consul.d"]
 
