@@ -7,6 +7,13 @@ RUN set -e \
  && echo "2dc2411c4324088b5fea9e32b361344c /usr/bin/gosu" | md5sum -c \
  && chmod +x /usr/bin/gosu
 
+# numactl
+RUN set -e \
+ && yum makecache \
+ && yum install -y numactl \
+ && yum clean all \
+ && rm -rf /var/cache/yum/*
+
 
 ENV MONGO_VERSION 3.2.0
 ENV MONGO_HOME /usr/share/mongodb

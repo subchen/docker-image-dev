@@ -10,9 +10,15 @@ if [[ "$1" = "mongod" || "$1" = "mongos" ]]; then
   #  echo never > /sys/kernel/mm/transparent_hugepage/defrag
   #fi
 
-  #chown -R mongodb:mongodb /data/db
+  chown -R mongodb:mongodb /data
+
+  numa='numactl --interleave=all'
+  if $numa true &> /dev/null; then
+    set -- $numa "$@"
+  fi
 
   exec gosu mongodb "$@"
+
 fi
 
 exec "$@"
