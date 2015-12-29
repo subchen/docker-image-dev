@@ -38,6 +38,38 @@ docker run -d -p 8400:8400 -p 8500:8500 -p 53:8600/udp --name node4 subchen/cons
   consul agent -client=0.0.0.0 -data-dir=/data -ui-dir=/ui -join=$(docker inspect -f '{{.NetworkSettings.IPAddress}}' node1)
 ```
 
+* test cluser using `docker-compose.yml`
+
+```
+node1:
+  image: subchen/consul
+  command: consul agent -server -bootstrap-expect=3 -data-dir=/data
+
+node2:
+  image: subchen/consul
+  command: consul agent -server -bootstrap-expect=3 -data-dir=/data -join=node1
+  links:
+    - node1
+
+node3:
+  image: subchen/consul
+  command: consul agent -server -bootstrap-expect=3 -data-dir=/data -join=node1
+  links:
+    - node1
+
+node4:
+  image: subchen/consul
+  command: consul agent -client=0.0.0.0 -data-dir=/data -ui-dir=/ui -join=node1
+  links:
+    - node1
+  ports:
+    - 8400:8400
+    - 8500:8500
+    - 53:8600/udp
+  dns:
+    - 127.0.0.1
+```
+
 * validate
 
 ```bash
