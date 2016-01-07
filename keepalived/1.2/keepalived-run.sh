@@ -5,7 +5,7 @@ KEEPALIVED_CONF=/etc/keepalived/keepalived.conf
 if [ ! -f $KEEPALIVED_CONF ]; then
   state=${KEEPALIVED_STATE:-MASTER}
   priority=${KEEPALIVED_PRIORITY:-200}
-  src=$(ifconfig eth0 | sed -n -r 's/.*inet ([0-9\.]+).*/\1/p')
+  src=$(ip addr show eth0 | sed -n -r 's/.*inet ([0-9\.]+).*/\1/p')
   peer=${KEEPALIVED_PEER}
   vip=${KEEPALIVED_VIP:-172.17.0.200}
 
