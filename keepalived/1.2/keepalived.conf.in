@@ -1,5 +1,5 @@
 global_defs {
-  router_id LVS_DEVEL
+  router_id HA_PROXY_BOX
 }
 vrrp_script haproxy_check {
   script "/etc/keepalived/haproxy-check.sh"
@@ -8,15 +8,17 @@ vrrp_script haproxy_check {
 }
 vrrp_instance VI_1 {
   state {{state}}
+  priority {{priority}}
+  {{nopreempt}}
+
   interface eth0
   virtual_router_id 51
-  priority {{priority}}
 
-  unicast_src_ip {{src}}
-
-  unicast_peer {
-    {{peer}}
-  }
+  #mcast_src_ip {{src}}
+  #unicast_src_ip {{src}}
+  #unicast_peer {
+  #  {{peer}}
+  #}
 
   track_script {
     haproxy_check
