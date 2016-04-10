@@ -19,6 +19,7 @@ Supported tags and respective `Dockerfile` links
 ```bash
 docker run --rm -it --name keepalived \
   --cap-add=NET_ADMIN \
+  --net=host \
   -e HAPROXY_SERVERS="10.0.0.11:8080 10.0.0.12:8080" \
   -e KEEPALIVED_VIP="10.0.0.200" \
   subchen/keepalived
@@ -29,6 +30,7 @@ docker run --rm -it --name keepalived \
 ```bash
 docker run --rm -it --name keepalived-backup \
   --cap-add=NET_ADMIN \
+  --net=host \
   -e HAPROXY_SERVERS="10.0.0.11:8080 10.0.0.12:8080" \
   -e KEEPALIVED_STATE=BACKUP \
   -e KEEPALIVED_VIP="10.0.0.200" \
