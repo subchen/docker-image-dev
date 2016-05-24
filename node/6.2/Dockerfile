@@ -16,8 +16,8 @@ RUN apk add --no-cache --virtual .build-deps curl make gcc g++ python linux-head
  && make \
  && make install \
  && paxctl -cm /usr/bin/node \
- && npm cache clean \
  && apk del .build-deps \
+ && npm cache clean \
  && rm -rf /tmp/* /var/cache/apk/* \
     /root/.npm /root/.node-gyp /usr/share/man \
     /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
