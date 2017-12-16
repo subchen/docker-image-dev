@@ -34,17 +34,17 @@ RUN curl -fSL https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x
  && tar -xzf node.tar.gz -C /usr/local --strip-components=1 \
  && rm -f node.tar.gz
 
-RUN npm install -g yarn
+RUN npm install -g yarn \
  && rm -rf $HOME/.npm
 
-RUN yarn global add mocha istanbul nyc spec-xunit-file js-beautify eslint
+RUN yarn global add mocha istanbul nyc spec-xunit-file js-beautify eslint \
  && rm -rf /usr/local/share/.cache/yarn
 
 ################################################################
-RUN yum install -y ruby ruby-devel libffi-devel
+RUN yum install -y ruby ruby-devel libffi-devel \
  && yum clean all \
  && rm -rf /var/cache/yum/*
 
-RUN gem install fpm travis
+RUN gem install fpm travis \
  && rm -rf $HOME/.gem
 
