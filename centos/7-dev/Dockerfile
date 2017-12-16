@@ -40,4 +40,4 @@ RUN yarn global add mocha istanbul nyc spec-xunit-file js-beautify eslint
 ################################################################
 RUN yum install -y ruby ruby-devel libffi-devel
 RUN gem install fpm
-
+RUN gem install travis
