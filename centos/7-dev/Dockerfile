@@ -18,7 +18,7 @@ RUN set -e \
  && curl -fSL https://redirector.gvt1.com/edgedl/go/go${GOVERSION}.linux-amd64.tar.gz -o golang.tar.gz \
  && mkdir -p $GOROOT \
  && tar -zxf golang.tar.gz -C $GOROOT --strip-components=1 \
- && rm -rf golang.tar.gz \
+ && rm -f golang.tar.gz \
  && mkdir -p $GOPATH/bin \
  && mkdir -p $GOPATH/src
 
@@ -32,12 +32,19 @@ ENV NODE_VERSION 8.9.3
 
 RUN curl -fSL https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz -o node.tar.gz \
  && tar -xzf node.tar.gz -C /usr/local --strip-components=1 \
- && rm -rf node.tar.gz
+ && rm -f node.tar.gz
 
 RUN npm install -g yarn
+ && rm -rf $HOME/.npm
+
 RUN yarn global add mocha istanbul nyc spec-xunit-file js-beautify eslint
+ && rm -rf /usr/local/share/.cache/yarn
 
 ################################################################
 RUN yum install -y ruby ruby-devel libffi-devel
-RUN gem install fpm
-RUN gem install travis
+ && yum clean all \
+ && rm -rf /var/cache/yum/*
+
+RUN gem install fpm travis
+ && rm -rf $HOME/.gem
+
