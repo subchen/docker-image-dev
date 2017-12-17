@@ -4,6 +4,7 @@ RUN yum makecache \
  && yum install -y git \
  && yum install -y make gcc gcc-c++ \
  && yum install -y rpm-build \
+ && yum install -y openssh-clients which \
  && yum clean all \
  && rm -rf /var/cache/yum/*
 
@@ -14,8 +15,7 @@ ENV GOPATH /go
 
 ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 
-RUN set -e \
- && curl -fSL https://redirector.gvt1.com/edgedl/go/go${GOVERSION}.linux-amd64.tar.gz -o golang.tar.gz \
+RUN curl -fSL https://redirector.gvt1.com/edgedl/go/go${GOVERSION}.linux-amd64.tar.gz -o golang.tar.gz \
  && mkdir -p $GOROOT \
  && tar -zxf golang.tar.gz -C $GOROOT --strip-components=1 \
  && rm -f golang.tar.gz \
@@ -39,6 +39,13 @@ RUN npm install -g yarn \
 
 RUN yarn global add mocha istanbul nyc spec-xunit-file js-beautify eslint \
  && rm -rf /usr/local/share/.cache/yarn
+
+################################################################
+RUN yum install -y python python-devel \
+ && yum clean all \
+ && rm -rf /var/cache/yum/*
+
+RUN curl -fSL https://bootstrap.pypa.io/get-pip.py | python
 
 ################################################################
 RUN yum install -y ruby ruby-devel libffi-devel \
