@@ -58,4 +58,4 @@ RUN gem install fpm travis \
  && echo "checked_completion: true" > $HOME/.travis/config.yml
 
 ################################################################
-curl -fSL https://raw.githubusercontent.com/subchen/publish-toolset/master/install.sh | bash -e
+RUN curl -fSL https://raw.githubusercontent.com/subchen/publish-toolset/master/install.sh | bash -e
