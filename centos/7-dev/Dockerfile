@@ -9,13 +9,13 @@ RUN yum makecache \
  && rm -rf /var/cache/yum/*
 
 ################################################################
-ENV GOVERSION 1.9.2
+ENV GOVERSION 1.10
 ENV GOROOT /usr/share/go
 ENV GOPATH /go
 
 ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
 
-RUN curl -fSL https://redirector.gvt1.com/edgedl/go/go${GOVERSION}.linux-amd64.tar.gz -o golang.tar.gz \
+RUN curl -fSL https://dl.google.com/go/go${GOVERSION}.linux-amd64.tar.gz -o golang.tar.gz \
  && mkdir -p $GOROOT \
  && tar -zxf golang.tar.gz -C $GOROOT --strip-components=1 \
  && rm -f golang.tar.gz \
@@ -53,5 +53,9 @@ RUN yum install -y ruby ruby-devel libffi-devel \
  && rm -rf /var/cache/yum/*
 
 RUN gem install fpm travis \
- && rm -rf $HOME/.gem
+ && rm -rf $HOME/.gem \
+ && mkdir -p $HOME/.travis \
+ && echo "checked_completion: true" > $HOME/.travis/config.yml
 
+################################################################
+curl -fSL https://raw.githubusercontent.com/subchen/publish-toolset/master/install.sh | bash -e
