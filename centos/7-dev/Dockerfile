@@ -9,7 +9,7 @@ RUN yum makecache \
  && rm -rf /var/cache/yum/*
 
 ################################################################
-ENV GOVERSION 1.10
+ENV GOVERSION 1.11.4
 ENV GOROOT /usr/share/go
 ENV GOPATH /go
 
@@ -28,7 +28,7 @@ RUN go get github.com/Masterminds/glide/... \
  && rm -rf $GOPATH/pkg
 
 ################################################################
-ENV NODE_VERSION 8.9.3
+ENV NODE_VERSION 10.15.0
 
 RUN curl -fSL https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz -o node.tar.gz \
  && tar -xzf node.tar.gz -C /usr/local --strip-components=1 \
