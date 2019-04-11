@@ -22,13 +22,29 @@ RUN curl -fSL https://dl.google.com/go/go${GOVERSION}.linux-amd64.tar.gz -o gola
  && mkdir -p $GOPATH/bin \
  && mkdir -p $GOPATH/src
 
-RUN go get github.com/Masterminds/glide/... \
- && go get github.com/sgotti/glide-vc/... \
- && rm -rf $GOPATH/src/* \
- && rm -rf $GOPATH/pkg
+################################################################
+ENV JAVA_VERSION 1.8.0
+ENV JAVA_HOME /usr/lib/jvm/java-$JAVA_VERSION-openjdk
+
+RUN yum makecache \
+ && yum install -y java-$JAVA_VERSION-openjdk-devel \
+ && yum clean all \
+ && rm -rf /var/cache/yum/*
 
 ################################################################
-ENV NODE_VERSION 10.15.0
+ENV MAVEN_VERSION 3.6.0
+ENV MAVEN_HOME /usr/share/maven
+
+RUN curl -fSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz -o maven.tar.gz \
+ && mkdir -p $MAVEN_HOME \
+ && tar xzf maven.tar.gz --strip-components=1 -C $MAVEN_HOME \
+ && rm -rf maven.tar.gz \
+ && ln -s $MAVEN_HOME/bin/mvn /usr/bin/mvn
+
+VOLUME /root/.m2
+
+################################################################
+ENV NODE_VERSION 10.15.3
 
 RUN curl -fSL https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz -o node.tar.gz \
  && tar -xzf node.tar.gz -C /usr/local --strip-components=1 \
