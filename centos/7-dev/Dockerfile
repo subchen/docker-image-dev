@@ -80,3 +80,16 @@ RUN yum install -y vim ctags cscope \
  && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/config/.vimrc -o ~/.vimrc \
  && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/update-vim-plugins.sh | bash -e
 
+################################################################
+RUN yum install -y openssh-server \
+ && ssh-keygen -q -N '' -t rsa -f /etc/ssh/ssh_host_rsa_key \
+ && ssh-keygen -q -N '' -t rsa -f /etc/ssh/ssh_host_ecdsa_key \
+ && ssh-keygen -q -N '' -t rsa -f /etc/ssh/ssh_host_ed25519_key \
+ && echo 'root:123123' | chpasswd
+
+EXPOSE 22
+
+#CMD [/usr/sbin/sshd, -D]
+
+################################################################
+
