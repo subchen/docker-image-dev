@@ -74,4 +74,9 @@ RUN gem install fpm travis \
  && echo "checked_completion: true" > $HOME/.travis/config.yml
 
 ################################################################
-RUN curl -fSL https://raw.githubusercontent.com/subchen/publish-toolset/master/install.sh | bash -e
+RUN yum install -y vim ctags cscope \
+ && yum clean all \
+ && rm -rf /var/cache/yum/* \
+ && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/config/.vimrc -o ~/.vimrc \
+ && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/update-vim-plugins.sh | bash -e
+
