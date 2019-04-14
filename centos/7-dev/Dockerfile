@@ -32,7 +32,7 @@ RUN yum makecache \
  && rm -rf /var/cache/yum/*
 
 ################################################################
-ENV MAVEN_VERSION 3.6.0
+ENV MAVEN_VERSION 3.6.1
 ENV MAVEN_HOME /usr/share/maven
 
 RUN curl -fSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz -o maven.tar.gz \
