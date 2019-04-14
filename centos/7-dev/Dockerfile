@@ -11,16 +11,13 @@ RUN yum makecache \
 ################################################################
 ENV GOVERSION 1.11.4
 ENV GOROOT /usr/share/go
-ENV GOPATH /go
 
-ENV PATH $GOPATH/bin:$GOROOT/bin:$PATH
+ENV PATH $GOROOT/bin:$PATH
 
 RUN curl -fSL https://dl.google.com/go/go${GOVERSION}.linux-amd64.tar.gz -o golang.tar.gz \
  && mkdir -p $GOROOT \
  && tar -zxf golang.tar.gz -C $GOROOT --strip-components=1 \
- && rm -f golang.tar.gz \
- && mkdir -p $GOPATH/bin \
- && mkdir -p $GOPATH/src
+ && rm -f golang.tar.gz
 
 ################################################################
 ENV JAVA_VERSION 1.8.0
