@@ -71,7 +71,9 @@ RUN gem install fpm travis \
  && echo "checked_completion: true" > $HOME/.travis/config.yml
 
 ################################################################
-RUN yum install -y vim ctags cscope \
+RUN curl -fSL https://copr.fedorainfracloud.org/coprs/lbiaggi/vim80-ligatures/repo/epel-7/lbiaggi-vim80-ligatures-epel-7.repo -o /etc/yum.repos.d/vim80.repo \
+ && yum install -y vim-enhanced \
+ && yum install -y ctags cscope \
  && yum clean all \
  && rm -rf /var/cache/yum/* \
  && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/config/.vimrc -o ~/.vimrc \
