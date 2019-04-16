@@ -38,7 +38,7 @@ RUN curl -fSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binar
  && rm -rf maven.tar.gz \
  && ln -s $MAVEN_HOME/bin/mvn /usr/bin/mvn
 
-VOLUME /root/.m2
+VOLUME $HOME/.m2
 
 ################################################################
 ENV NODE_VERSION 10.15.3
@@ -76,7 +76,7 @@ RUN curl -fSL https://copr.fedorainfracloud.org/coprs/lbiaggi/vim80-ligatures/re
  && yum install -y ctags cscope \
  && yum clean all \
  && rm -rf /var/cache/yum/* \
- && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/config/.vimrc -o ~/.vimrc \
+ && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/config/.vimrc -o $HOME/.vimrc \
  && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/update-vim-plugins.sh | bash -e
 
 ################################################################
@@ -85,9 +85,9 @@ ENV POWERLINE_VERSION 1.12.1
 RUN curl -fSL https://github.com/justjanne/powerline-go/releases/download/v$POWERLINE_VERSION/powerline-go-linux-amd64 -o /usr/local/bin/powerline-go \
  && chmod +x /usr/local/bin/powerline-go
 
-RUN mkdir -p ~/.bash \
- && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/powerline-go/config/powerline-go.bash -o ~/.bash/powerline-go.bash \
- && echo ". ~/.bash/powerline-go.bash" >> ~/.bashrc
+RUN mkdir -p $HOME/.bash \
+ && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/powerline-go/config/powerline-go.bash -o $HOME/.bash/powerline-go.bash \
+ && echo ". $HOME/.bash/powerline-go.bash" >> $HOME/.bashrc
 
 ################################################################
 RUN yum install -y openssh-server openssh-clients \
@@ -101,4 +101,5 @@ EXPOSE 22
 #CMD [/usr/sbin/sshd, -D]
 
 ################################################################
+VOLUME $HOME
 
