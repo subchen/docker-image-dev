@@ -80,6 +80,16 @@ RUN curl -fSL https://copr.fedorainfracloud.org/coprs/lbiaggi/vim80-ligatures/re
  && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/update-vim-plugins.sh | bash -e
 
 ################################################################
+POWERLINE_VERSION=1.12.1
+
+RUN curl -fSL https://github.com/justjanne/powerline-go/releases/download/v$POWERLINE_VERSION/powerline-go-linux-amd64 -o /usr/local/bin/powerline-go \
+ && chmod +x /usr/local/bin/powerline-go
+
+RUN mkdir -p ~/.bash \
+ && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/powerline-go/config/powerline-go.bash -o ~/.bash/powerline-go.bash \
+ && echo ". ~/.bash/powerline-go.bash" >> ~/.bashrc
+
+################################################################
 RUN yum install -y openssh-server openssh-clients \
  && ssh-keygen -q -N '' -t rsa -f /etc/ssh/ssh_host_rsa_key \
  && ssh-keygen -q -N '' -t rsa -f /etc/ssh/ssh_host_ecdsa_key \
