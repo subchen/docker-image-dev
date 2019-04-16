@@ -38,7 +38,7 @@ RUN curl -fSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binar
  && rm -rf maven.tar.gz \
  && ln -s $MAVEN_HOME/bin/mvn /usr/bin/mvn
 
-VOLUME $HOME/.m2
+VOLUME /root/.m2
 
 ################################################################
 ENV NODE_VERSION 10.15.3
@@ -48,7 +48,7 @@ RUN curl -fSL https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x
  && rm -f node.tar.gz
 
 RUN npm install -g yarn \
- && rm -rf $HOME/.npm
+ && rm -rf /root/.npm
 
 RUN yarn global add mocha istanbul nyc spec-xunit-file js-beautify eslint \
  && rm -rf /usr/local/share/.cache/yarn
@@ -66,9 +66,9 @@ RUN yum install -y ruby ruby-devel libffi-devel \
  && rm -rf /var/cache/yum/*
 
 RUN gem install fpm travis \
- && rm -rf $HOME/.gem \
- && mkdir -p $HOME/.travis \
- && echo "checked_completion: true" > $HOME/.travis/config.yml
+ && rm -rf /root/.gem \
+ && mkdir -p /root/.travis \
+ && echo "checked_completion: true" > /root/.travis/config.yml
 
 ################################################################
 RUN curl -fSL https://copr.fedorainfracloud.org/coprs/lbiaggi/vim80-ligatures/repo/epel-7/lbiaggi-vim80-ligatures-epel-7.repo -o /etc/yum.repos.d/vim80.repo \
@@ -76,7 +76,7 @@ RUN curl -fSL https://copr.fedorainfracloud.org/coprs/lbiaggi/vim80-ligatures/re
  && yum install -y ctags cscope \
  && yum clean all \
  && rm -rf /var/cache/yum/* \
- && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/config/.vimrc -o $HOME/.vimrc \
+ && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/config/.vimrc -o /root/.vimrc \
  && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/update-vim-plugins.sh | bash -e
 
 ################################################################
@@ -85,9 +85,9 @@ ENV POWERLINE_VERSION 1.12.1
 RUN curl -fSL https://github.com/justjanne/powerline-go/releases/download/v$POWERLINE_VERSION/powerline-go-linux-amd64 -o /usr/local/bin/powerline-go \
  && chmod +x /usr/local/bin/powerline-go
 
-RUN mkdir -p $HOME/.bash \
- && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/powerline-go/config/powerline-go.bash -o $HOME/.bash/powerline-go.bash \
- && echo ". $HOME/.bash/powerline-go.bash" >> $HOME/.bashrc
+RUN mkdir -p /root/.bash \
+ && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/powerline-go/config/powerline-go.bash -o /root/.bash/powerline-go.bash \
+ && echo ". /root/.bash/powerline-go.bash" >> /root/.bashrc
 
 ################################################################
 RUN yum install -y openssh-server openssh-clients \
@@ -101,5 +101,5 @@ EXPOSE 22
 #CMD [/usr/sbin/sshd, -D]
 
 ################################################################
-VOLUME $HOME
+VOLUME /root
 
