@@ -80,7 +80,7 @@ RUN curl -fSL https://copr.fedorainfracloud.org/coprs/lbiaggi/vim80-ligatures/re
  && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/update-vim-plugins.sh | bash -e
 
 ################################################################
-POWERLINE_VERSION=1.12.1
+ENV POWERLINE_VERSION 1.12.1
 
 RUN curl -fSL https://github.com/justjanne/powerline-go/releases/download/v$POWERLINE_VERSION/powerline-go-linux-amd64 -o /usr/local/bin/powerline-go \
  && chmod +x /usr/local/bin/powerline-go
