@@ -2,9 +2,10 @@ FROM centos:7
 
 RUN yum makecache \
  && yum install -y git \
- && yum install -y make gcc gcc-c++ \
- && yum install -y rpm-build \
- && yum install -y openssh-clients which \
+ && yum install -y make gcc gcc-c++ libtool \
+ && yum install -y openssh-clients openssl \
+ && yum install -y rpm-build yum-utils createrepo \
+ && yum install -y bash-completion wget which zip unzip tree yajl epel-release net-tools \
  && yum clean all \
  && rm -rf /var/cache/yum/*
 
