@@ -5,7 +5,7 @@ RUN yum makecache \
  && yum install -y make gcc gcc-c++ libtool \
  && yum install -y openssh-clients openssl \
  && yum install -y rpm-build yum-utils createrepo \
- && yum install -y bash-completion wget which zip unzip tree yajl epel-release net-tools \
+ && yum install -y bash-completion sudo wget which zip unzip tree yajl epel-release net-tools \
  && yum install -y sshpass the_silver_searcher jq \
  && yum clean all \
  && rm -rf /var/cache/yum/*
