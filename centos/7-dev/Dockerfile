@@ -114,7 +114,8 @@ EXPOSE 22
 RUN yum install -y openssh-clients \
  && yum clean all \
  && rm -rf /var/cache/yum/* \
- && ssh-keygen -q -N '' -t rsa -f ~/.ssh/id_rsa \
+ && mkdir -p /root/.ssh \
+ && ssh-keygen -q -N '' -t rsa -f /root/.ssh/id_rsa \
  && curl -s -fSL https://github.com/subchen/dev-box/blob/master/ssh/config/config -o /root/.ssh/config
 
 ################################################################
