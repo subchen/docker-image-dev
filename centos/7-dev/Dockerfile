@@ -6,8 +6,12 @@ RUN yum makecache \
  && yum install -y openssh-clients openssl \
  && yum install -y rpm-build yum-utils createrepo \
  && yum install -y bash-completion wget which zip unzip tree yajl epel-release net-tools \
+ && yum install -y sshpass the_silver_searcher jq \
  && yum clean all \
  && rm -rf /var/cache/yum/*
+
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+ && echo -e "LANG=en_US.UTF-8\nLC_ALL=en_US.UTF-8" > /etc/environment
 
 ################################################################
 ENV GOVERSION 1.11.4
