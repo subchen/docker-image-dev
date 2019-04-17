@@ -38,7 +38,7 @@ RUN curl -fSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binar
  && rm -rf maven.tar.gz \
  && ln -s $MAVEN_HOME/bin/mvn /usr/bin/mvn
 
-VOLUME /root/.m2
+VOLUME /root/.m2/repository
 
 ################################################################
 ENV NODE_VERSION 10.15.3
@@ -50,8 +50,10 @@ RUN curl -fSL https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x
 RUN npm install -g yarn \
  && rm -rf /root/.npm
 
-RUN yarn global add mocha istanbul nyc spec-xunit-file js-beautify eslint \
- && rm -rf /usr/local/share/.cache/yarn
+#RUN yarn global add mocha istanbul nyc spec-xunit-file js-beautify eslint \
+# && rm -rf /usr/local/share/.cache/yarn
+
+VOLUME /root/.npm
 
 ################################################################
 RUN yum install -y python python-devel \
