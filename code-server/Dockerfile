@@ -8,10 +8,10 @@ RUN wget http://download-ib01.fedoraproject.org/pub/fedora/linux/updates/29/Ever
  && rm -f *.rpm
 
 RUN curl -s -fSL https://github.com/cdr/code-server/releases/download/1.939-vsc1.33.1/code-server1.939-vsc1.33.1-linux-x64.tar.gz -o code-server.tar.gz \
- && tar -zxf code-server.tar.gz -C /usr/local/bin --strip-components=1 \
+ && tar -zxf code-server.tar.gz -C /usr/local/bin --strip-components=1
 
-RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-init_1.2.2_amd64
-RUN chmod +x /usr/local/bin/dumb-init
+RUN curl -fSL https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-init_1.2.2_amd64 -o /usr/local/bin/dumb-init \
+ && chmod +x /usr/local/bin/dumb-init
 
 WORKDIR /workspace
 
