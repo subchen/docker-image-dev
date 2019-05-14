@@ -9,4 +9,3 @@ RUN wget http://download-ib01.fedoraproject.org/pub/fedora/linux/updates/29/Ever
 
 RUN curl -s -fSL https://github.com/cdr/code-server/releases/download/1.939-vsc1.33.1/code-server1.939-vsc1.33.1-linux-x64.tar.gz -o code-server.tar.gz \
  && tar -zxf code-server.tar.gz -C /usr/local/bin --strip-components=1 \
- && mv code-server*/code-server
