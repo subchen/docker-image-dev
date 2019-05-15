@@ -16,12 +16,3 @@ RUN curl -fSL https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-in
 WORKDIR /workspace
 
 ENTRYPOINT ["dumb-init", "code-server"]
-
-#docker run -it --rm \
-#    -p 8443:8443 \
-#    -v $HOME/.m2/repository:/root/.m2/repository \
-#    -v devbox-home:/root \
-#    -v devbox-workspace:/workspace \
-#    -w /workspace \
-#    code-server \
-#    --allow-http --no-auth
