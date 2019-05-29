@@ -20,7 +20,7 @@ docker run -d \
     -v $HOME/.vscode-server-cert:/root/certs \
     -w /workspace \
     -p 127.0.0.1:10443:8443 \
-    code-server \
+    subchen/code-server \
     --no-auth \
     --cert=/root/certs/localhost+1.pem \
     --cert-key=/root/certs/localhost+1-key.pem
