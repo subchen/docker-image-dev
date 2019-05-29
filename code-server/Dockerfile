@@ -7,7 +7,7 @@ RUN wget http://download-ib01.fedoraproject.org/pub/fedora/linux/updates/29/Ever
  && rpm -ivh --force *.rpm \
  && rm -f *.rpm
 
-RUN curl -s -fSL https://github.com/cdr/code-server/releases/download/1.939-vsc1.33.1/code-server1.939-vsc1.33.1-linux-x64.tar.gz -o code-server.tar.gz \
+RUN curl -s -fSL https://github.com/cdr/code-server/releases/download/1.1119-vsc1.33.1/code-server1.1119-vsc1.33.1-linux-x64.tar.gz -o code-server.tar.gz \
  && tar -zxf code-server.tar.gz -C /usr/local/bin --strip-components=1
 
 RUN curl -fSL https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-init_1.2.2_amd64 -o /usr/local/bin/dumb-init \
