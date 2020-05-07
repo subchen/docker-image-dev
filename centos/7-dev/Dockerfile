@@ -2,7 +2,7 @@ FROM centos:7
 
 RUN yum makecache \
  && yum install -y git \
- && yum install -y make gcc gcc-c++ libtool \
+ && yum install -y make autoconf automake gcc gcc-c++ libtool \
  && yum install -y openssh-clients openssl \
  && yum install -y rpm-build yum-utils createrepo \
  && yum install -y bash-completion sudo wget which zip unzip tree yajl epel-release net-tools \
@@ -74,12 +74,10 @@ RUN curl -s -fSL https://bootstrap.pypa.io/get-pip.py | python
 # && rm -rf /var/cache/yum/*
 
 RUN yum install -y centos-release-scl-rh centos-release-scl \
- && yum --enablerepo=centos-sclo-rh install -y rh-ruby26 rh-ruby26-ruby-devel \
+ && yum --enablerepo=centos-sclo-rh install -y rh-ruby26 rh-ruby26-ruby-devel libffi-devel \
+ && echo "source scl_source enable rh-ruby26" >> /root/.bashrc \
  && yum clean all \
  && rm -rf /var/cache/yum/*
-
-ENV LD_LIBRARY_PATH /opt/rh/rh-ruby26/root/usr/lib64:$LD_LIBRARY_PATH
-ENV PATH            /opt/rh/rh-ruby26/root/usr/bin:$PATH
 
 RUN gem install fpm travis \
  && rm -rf /root/.gem \
