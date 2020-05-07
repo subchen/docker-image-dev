@@ -79,7 +79,8 @@ RUN yum install -y centos-release-scl-rh centos-release-scl \
  && yum clean all \
  && rm -rf /var/cache/yum/*
 
-RUN gem install fpm travis \
+RUN source scl_source enable rh-ruby26 \
+ && gem install fpm travis \
  && rm -rf /root/.gem \
  && mkdir -p /root/.travis \
  && echo "checked_completion: true" > /root/.travis/config.yml
