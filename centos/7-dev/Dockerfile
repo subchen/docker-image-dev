@@ -76,7 +76,7 @@ RUN curl -s -fSL https://bootstrap.pypa.io/get-pip.py | python
 RUN yum install -y centos-release-scl-rh centos-release-scl \
  && yum --enablerepo=centos-sclo-rh install -y rh-ruby26 rh-ruby26-ruby-devel \
  && scl enable rh-ruby26 bash \
- && echo "source scl_source enable rh-ruby26" >> /root/.bashrc \
+ && echo "scl_source enable rh-ruby26" >> /root/.bashrc \
  && yum clean all \
  && rm -rf /var/cache/yum/*
 
