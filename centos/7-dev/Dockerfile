@@ -75,12 +75,13 @@ RUN curl -s -fSL https://bootstrap.pypa.io/get-pip.py | python
 
 RUN yum install -y centos-release-scl-rh centos-release-scl \
  && yum --enablerepo=centos-sclo-rh install -y rh-ruby26 rh-ruby26-ruby-devel \
- && echo "scl_source enable rh-ruby26" >> /root/.bashrc \
  && yum clean all \
  && rm -rf /var/cache/yum/*
 
-RUN scl enable rh-ruby26 bash \
- && gem install fpm travis \
+ENV LD_LIBRARY_PATH /opt/rh/rh-ruby26/root/usr/lib64:$LD_LIBRARY_PATH
+ENV PATH            /opt/rh/rh-ruby26/root/usr/bin:$PATH
+
+RUN gem install fpm travis \
  && rm -rf /root/.gem \
  && mkdir -p /root/.travis \
  && echo "checked_completion: true" > /root/.travis/config.yml
