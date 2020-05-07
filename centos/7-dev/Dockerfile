@@ -73,10 +73,12 @@ RUN curl -s -fSL https://bootstrap.pypa.io/get-pip.py | python
 # && yum clean all \
 # && rm -rf /var/cache/yum/*
 
-RUN gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB \
- && curl -sSL https://get.rvm.io | bash -s stable \
- && /usr/local/rvm/bin/rvm install 2.6 \
- && /usr/local/rvm/bin/rvm use 2.6 --default
+RUN yum install -y centos-release-scl-rh centos-release-scl \
+ && yum --enablerepo=centos-sclo-rh install -y rh-ruby26 rh-ruby26-ruby-devel \
+ && scl enable rh-ruby26 bash \
+ && echo "source scl_source enable rh-ruby26" >> /root/.bashrc \
+ && yum clean all \
+ && rm -rf /var/cache/yum/*
 
 RUN gem install fpm travis \
  && rm -rf /root/.gem \
@@ -100,7 +102,7 @@ RUN curl -fSL https://github.com/justjanne/powerline-go/releases/download/v$POWE
 
 RUN mkdir -p /root/.bash \
  && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/powerline-go/config/powerline-go.bash -o /root/.bash/powerline-go.bash \
- && echo ". /root/.bash/powerline-go.bash" >> /root/.bashrc
+ && echo "source /root/.bash/powerline-go.bash" >> /root/.bashrc
 
 ################################################################
 RUN yum install -y openssh-server \
