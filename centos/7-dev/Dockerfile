@@ -14,7 +14,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
  && echo -e "LANG=en_US.UTF-8\nLC_ALL=en_US.UTF-8" > /etc/environment
 
 ################################################################
-ENV GOVERSION 1.11.4
+ENV GOVERSION 1.14.2
 ENV GOROOT /usr/share/go
 
 ENV PATH $GOROOT/bin:$PATH
@@ -34,7 +34,7 @@ RUN yum makecache \
  && rm -rf /var/cache/yum/*
 
 ################################################################
-ENV MAVEN_VERSION 3.6.1
+ENV MAVEN_VERSION 3.6.3
 ENV MAVEN_HOME /usr/share/maven
 
 RUN curl -s -fSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz -o maven.tar.gz \
@@ -46,7 +46,7 @@ RUN curl -s -fSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/bi
 VOLUME /root/.m2/repository
 
 ################################################################
-ENV NODE_VERSION 10.15.3
+ENV NODE_VERSION 12.16.3
 
 RUN curl -s -fSL https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz -o node.tar.gz \
  && tar -xzf node.tar.gz -C /usr/local --strip-components=1 \
@@ -87,7 +87,7 @@ RUN curl -s -fSL https://copr.fedorainfracloud.org/coprs/lbiaggi/vim80-ligatures
  && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/update-vim-plugins.sh | bash -e
 
 ################################################################
-ENV POWERLINE_VERSION 1.12.1
+ENV POWERLINE_VERSION 1.17.0
 
 RUN curl -fSL https://github.com/justjanne/powerline-go/releases/download/v$POWERLINE_VERSION/powerline-go-linux-amd64 -o /usr/local/bin/powerline-go \
  && chmod +x /usr/local/bin/powerline-go
