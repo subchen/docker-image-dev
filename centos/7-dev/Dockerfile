@@ -68,18 +68,21 @@ RUN yum install -y python python-devel \
 RUN curl -s -fSL https://bootstrap.pypa.io/get-pip.py | python
 
 ################################################################
-# default install ruby 2.0
 #RUN yum install -y ruby ruby-devel libffi-devel \
 # && yum clean all \
 # && rm -rf /var/cache/yum/*
 
-RUN yum install -y centos-release-scl-rh centos-release-scl \
- && yum --enablerepo=centos-sclo-rh install -y rh-ruby26 rh-ruby26-ruby-devel libffi-devel \
- && echo "source scl_source enable rh-ruby26" >> /root/.bashrc \
- && yum clean all \
- && rm -rf /var/cache/yum/*
+#RUN yum install -y centos-release-scl-rh centos-release-scl \
+# && yum --enablerepo=centos-sclo-rh install -y rh-ruby26 rh-ruby26-ruby-devel libffi-devel \
+# && echo "source scl_source enable rh-ruby26" >> /root/.bashrc \
+# && yum clean all \
+# && rm -rf /var/cache/yum/*
 
-RUN source scl_source enable rh-ruby26 \
+RUN gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB \
+ && curl -sSL https://get.rvm.io | bash -s stable \
+ && echo "source /etc/profile.d/rvm.sh" >> /root/.bashrc
+
+RUN source /etc/profile.d/rvm.sh \
  && gem install fpm travis \
  && rm -rf /root/.gem \
  && mkdir -p /root/.travis \
