@@ -68,9 +68,15 @@ RUN yum install -y python python-devel \
 RUN curl -s -fSL https://bootstrap.pypa.io/get-pip.py | python
 
 ################################################################
-RUN yum install -y ruby ruby-devel libffi-devel \
- && yum clean all \
- && rm -rf /var/cache/yum/*
+# default install ruby 2.0
+#RUN yum install -y ruby ruby-devel libffi-devel \
+# && yum clean all \
+# && rm -rf /var/cache/yum/*
+
+RUN gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB \
+ && curl -sSL https://get.rvm.io | bash -s stable \
+ && /usr/local/rvm/bin/rvm install 2.6 \
+ && /usr/local/rvm/bin/rvm use 2.6 --default
 
 RUN gem install fpm travis \
  && rm -rf /root/.gem \
