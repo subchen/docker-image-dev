@@ -85,7 +85,7 @@ RUN yum install -y ruby ruby-devel libffi-devel \
 # && rvm install ruby-2.6 \
 # && rvm use ruby-2.6 --default
 
-RUN gem install fpm travis:1.8.13 \
+RUN gem install fpm travis:1.8.13 gh:0.16.0 \
  && rm -rf /root/.gem \
  && mkdir -p /root/.travis \
  && echo "checked_completion: true" > /root/.travis/config.yml
