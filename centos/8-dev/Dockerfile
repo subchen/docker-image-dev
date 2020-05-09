@@ -15,6 +15,9 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
  && echo -e "LANG=en_US.UTF-8\nLC_ALL=en_US.UTF-8" > /etc/environment
 
 ################################################################
+RUN yum install -y https://dl.bintray.com/subchen/yum-repo/the_silver_searcher-2.1.0-1.el8.x86_64.rpm
+
+################################################################
 ENV GOVERSION 1.14.2
 ENV GOROOT /usr/share/go
 
