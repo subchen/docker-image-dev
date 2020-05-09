@@ -5,8 +5,9 @@ RUN yum makecache \
  && yum install -y make autoconf automake gcc gcc-c++ libtool \
  && yum install -y openssh-clients openssl \
  && yum install -y rpm-build yum-utils createrepo \
- && yum install -y bash-completion sudo wget which zip unzip tree yajl epel-release net-tools \
- && yum install -y sshpass the_silver_searcher jq \
+ && yum install -y bash-completion sudo wget which zip unzip tree yajl net-tools \
+ && yum install -y epel-release \
+ && yum install -y sshpass jq \
  && yum clean all \
  && rm -rf /var/cache/yum/*
 
@@ -66,7 +67,7 @@ RUN yum install -y python36 python36-devel \
  && yum clean all \
  && rm -rf /var/cache/yum/*
 
-RUN curl -s -fSL https://bootstrap.pypa.io/get-pip.py | python
+RUN curl -s -fSL https://bootstrap.pypa.io/get-pip.py | python3
 
 ################################################################
 RUN yum install -y ruby ruby-devel rubygems rubygems-devel libffi-devel \
