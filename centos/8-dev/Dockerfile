@@ -63,11 +63,9 @@ RUN npm install -g yarn \
 VOLUME /root/.npm
 
 ################################################################
-RUN yum install -y python36 python36-devel \
+RUN yum install -y python36 python36-devel python3-pip \
  && yum clean all \
  && rm -rf /var/cache/yum/*
-
-RUN curl -s -fSL https://bootstrap.pypa.io/get-pip.py | python3
 
 ################################################################
 RUN yum install -y ruby ruby-devel rubygems rubygems-devel libffi-devel \
