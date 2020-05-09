@@ -99,6 +99,10 @@ RUN mkdir -p /root/.bash \
  && echo "source /root/.bash/powerline-go.bash" >> /root/.bashrc
 
 ################################################################
+RUN cd /usr/local/bin/
+ && curl -fL https://getcli.jfrog.io | sh
+
+################################################################
 RUN yum install -y openssh-server \
  && yum clean all \
  && rm -rf /var/cache/yum/* \
