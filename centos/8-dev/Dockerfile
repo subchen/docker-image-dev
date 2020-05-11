@@ -2,7 +2,7 @@ FROM centos:8
 
 RUN yum makecache \
  && yum install -y git \
- && yum install -y make autoconf automake gcc gcc-c++ libtool \
+ && yum install -y make cmake autoconf automake gcc gcc-c++ libtool \
  && yum install -y openssh-clients openssl \
  && yum install -y rpm-build yum-utils createrepo \
  && yum install -y bash-completion sudo wget which zip unzip tree yajl net-tools \
