@@ -111,7 +111,9 @@ RUN yum install -y openssh-server \
  && ssh-keygen -q -N '' -t rsa -f /etc/ssh/ssh_host_rsa_key \
  && ssh-keygen -q -N '' -t rsa -f /etc/ssh/ssh_host_ecdsa_key \
  && ssh-keygen -q -N '' -t rsa -f /etc/ssh/ssh_host_ed25519_key \
- && sed '/UseDNS/c UseDNS=no' /etc/ssh/sshd_config \
+ && sed -i '/^#*PermitRootLogin/c PermitRootLogin yes' /etc/ssh/sshd_config \
+ && sed -i '/^#*UseDNS/c UseDNS=no' /etc/ssh/sshd_config \
+ && rm -rf /run/nologin \
  && echo 'root:123123' | chpasswd
 
 EXPOSE 22
@@ -124,7 +126,7 @@ RUN yum install -y openssh-clients \
  && rm -rf /var/cache/yum/* \
  && mkdir -p /root/.ssh \
  && ssh-keygen -q -N '' -t rsa -f /root/.ssh/id_rsa \
- && curl -s -fSL https://github.com/subchen/dev-box/blob/master/ssh/config/config -o /root/.ssh/config
+ && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/ssh/config/config -o /root/.ssh/config
 
 ################################################################
 VOLUME /root
