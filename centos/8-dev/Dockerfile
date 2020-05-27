@@ -48,7 +48,7 @@ RUN curl -s -fSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/bi
  && rm -rf maven.tar.gz \
  && ln -s $MAVEN_HOME/bin/mvn /usr/bin/mvn
 
-VOLUME /root/.m2/repository
+#VOLUME /root/.m2/repository
 
 ################################################################
 ENV NODE_VERSION 12.16.3
@@ -129,4 +129,4 @@ RUN yum install -y openssh-clients \
  && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/ssh/config/config -o /root/.ssh/config
 
 ################################################################
-VOLUME /root
+#VOLUME /root
