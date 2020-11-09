@@ -19,3 +19,16 @@ Supported tags and respective `Dockerfile` links
 * [GitHub repo](https://github.com/subchen/docker-images/blob/master/centos)
 * [DockerHub repo](https://hub.docker.com/r/subchen/centos)
 
+## Run in docker
+
+```
+docker run -it --rm \
+    -v $(pwd):/mnt \
+    -v $HOME/.m2/repository:/root/.m2/repository \
+    -v devbox-home:/root \
+    -v devbox-workspace:/workspace \
+    -w /workspace \
+    -p 127.0.0.1:10080:8080 \
+    subchen/centos:8-dev \
+    bash
+```
