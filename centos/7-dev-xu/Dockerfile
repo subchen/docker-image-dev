@@ -48,18 +48,18 @@ RUN yum install -y gcc make cmake \
 
 RUN cd /root/ \
  && curl -fSL https://www.python.org/ftp/python/3.11.2/Python-3.11.2.tgz -o Python-3.11.2.tgz \
- && tar -zxvf Python-3.11.2.tgz \
+ && tar -zxf Python-3.11.2.tgz \
  && rm -rf Python-3.11.2.tgz \
  && cd ./Python-3.11.2 \
- && CFLAGS=$(pkg-config --cflags openssl11) LDFLAGS=$(pkg-config --libs openssl11) ./configure --prefix=/usr/local/python-3.11.2 --with-ssl \
+ && CFLAGS=$(pkg-config --cflags openssl11) LDFLAGS=$(pkg-config --libs openssl11) ./configure --prefix=/usr/local/python-3.11.2 \
  && make \
  && make install \
  && rm -rf ./Python-3.11.2
 
-RUN ln -s /usr/local/python-3.11.2/bin/python3 /usr/bin/python3 \
- && ln -s /usr/local/python-3.11.2/bin/pip3    /usr/bin/pip3 \
- && ln -s /usr/local/bin/python3               /usr/bin/python \
- && ln -s /usr/local/bin/pip3                  /usr/bin/pip
+RUN ln -s /usr/local/python-3.11.2/bin/python3 /usr/local/bin/python3 \
+ && ln -s /usr/local/python-3.11.2/bin/pip3    /usr/local/bin/pip3 \
+ && ln -s /usr/local/bin/python3               /usr/local/bin/python \
+ && ln -s /usr/local/bin/pip3                  /usr/local/bin/pip
 
 
 ################################################################
