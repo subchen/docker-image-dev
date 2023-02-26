@@ -85,10 +85,8 @@ RUN yum install -y ruby ruby-devel libffi-devel \
 # && rvm install ruby-2.6 \
 # && rvm use ruby-2.6 --default
 
-RUN gem install fpm travis:1.8.13 gh:0.16.0 \
- && rm -rf /root/.gem \
- && mkdir -p /root/.travis \
- && echo "checked_completion: true" > /root/.travis/config.yml
+RUN gem install fpm gh:0.16.0 \
+ && rm -rf /root/.gem
 
 ################################################################
 RUN curl -s -fSL https://copr.fedorainfracloud.org/coprs/lbiaggi/vim80-ligatures/repo/epel-7/lbiaggi-vim80-ligatures-epel-7.repo -o /etc/yum.repos.d/vim80.repo \
