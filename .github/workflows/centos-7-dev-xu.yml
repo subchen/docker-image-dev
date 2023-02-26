@@ -1,0 +1,15 @@
+name: centos-7-dev-xu
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file centos/7-dev-xu/Dockerfile --tag subchen/centos:7-dev-xu
+
