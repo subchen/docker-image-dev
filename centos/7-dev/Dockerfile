@@ -94,8 +94,8 @@ RUN curl -s -fSL https://copr.fedorainfracloud.org/coprs/lbiaggi/vim80-ligatures
  && yum install -y ctags cscope \
  && yum clean all \
  && rm -rf /var/cache/yum/* \
- && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/config/.vimrc -o /root/.vimrc \
- && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/update-vim-plugins.sh | bash -e
+ && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/.vimrc -o /root/.vimrc \
+ && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/app/vim/install-vim-plugins.sh | bash -e
 
 ################################################################
 ENV POWERLINE_VERSION 1.17.0
@@ -104,7 +104,7 @@ RUN curl -fSL https://github.com/justjanne/powerline-go/releases/download/v$POWE
  && chmod +x /usr/local/bin/powerline-go
 
 RUN mkdir -p /root/.bash \
- && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/powerline-go/config/powerline-go.bash -o /root/.bash/powerline-go.bash \
+ && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/app/powerline-go/.bash/powerline-go.bash -o /root/.bash/powerline-go.bash \
  && echo "source /root/.bash/powerline-go.bash" >> /root/.bashrc
 
 ################################################################
