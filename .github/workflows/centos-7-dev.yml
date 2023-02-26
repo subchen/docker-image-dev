@@ -1,0 +1,22 @@
+name: centos-7-dev
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build the Docker image
+      run: docker build . --file centos/7-dev/Dockerfile --tag subchen/centos:7-dev
+
+    - name: Log into registry
+      run: echo "${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}" | docker login -u subchen --password-stdin
+
+    - name: Push image
+      run: docker push subchen/centos:7-dev
+  
