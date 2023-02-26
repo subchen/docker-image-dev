@@ -46,7 +46,7 @@ RUN curl -s -fSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/bi
 VOLUME /root/.m2/repository
 
 ################################################################
-ENV NODE_VERSION 12.16.3
+ENV NODE_VERSION 18.14.2
 
 RUN curl -s -fSL https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz -o node.tar.gz \
  && tar -xzf node.tar.gz -C /usr/local --strip-components=1 \
