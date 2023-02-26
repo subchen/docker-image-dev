@@ -85,7 +85,7 @@ RUN yum install -y ruby ruby-devel libffi-devel \
 # && rvm install ruby-2.6 \
 # && rvm use ruby-2.6 --default
 
-RUN gem install fpm gh:0.16.0 \
+RUN gem install fpm \
  && rm -rf /root/.gem
 
 ################################################################
