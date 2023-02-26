@@ -65,7 +65,7 @@ RUN yum install -y python python-devel \
  && yum clean all \
  && rm -rf /var/cache/yum/*
 
-RUN curl -s -fSL https://bootstrap.pypa.io/get-pip.py | python
+RUN curl -s -fSL https://bootstrap.pypa.io/pip/2.7/get-pip.py | python
 
 ################################################################
 RUN yum install -y ruby ruby-devel libffi-devel \
