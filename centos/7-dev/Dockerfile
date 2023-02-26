@@ -14,7 +14,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
  && echo -e "LANG=en_US.UTF-8\nLC_ALL=en_US.UTF-8" > /etc/environment
 
 ################################################################
-ENV GOVERSION 1.14.2
+ENV GOVERSION 1.20.1
 ENV GOROOT /usr/share/go
 
 ENV PATH $GOROOT/bin:$PATH
