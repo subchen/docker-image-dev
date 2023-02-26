@@ -129,7 +129,7 @@ RUN yum install -y openssh-clients \
  && rm -rf /var/cache/yum/* \
  && mkdir -p /root/.ssh \
  && ssh-keygen -q -N '' -t rsa -f /root/.ssh/id_rsa \
- && curl -s -fSL https://github.com/subchen/dev-box/blob/master/ssh/config/config -o /root/.ssh/config
+ && echo -e "Host *\n  StrictHostKeyChecking no\n  UserKnownHostsFile /dev/null\n  LogLevel ERROR" > /root/.ssh/config
 
 ################################################################
 VOLUME /root
