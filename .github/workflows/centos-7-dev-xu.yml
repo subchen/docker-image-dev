@@ -3,6 +3,8 @@ name: centos-7-dev-xu
 on:
   push:
     branches: [ "master" ]
+    paths:
+      - "centos/7-dev-xu/*"
 
 jobs:
   build-push:
