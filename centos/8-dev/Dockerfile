@@ -103,7 +103,7 @@ RUN curl -fSL https://github.com/justjanne/powerline-go/releases/download/v$POWE
  && chmod +x /usr/local/bin/powerline-go
 
 RUN mkdir -p /root/.bash \
- && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/powerline-go/config/powerline-go.bash -o /root/.bash/powerline-go.bash \
+ && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/app/powerline-go/.bash/powerline-go.bash -o /root/.bash/powerline-go.bash \
  && echo "source /root/.bash/powerline-go.bash" >> /root/.bashrc
 
 ################################################################
