@@ -13,7 +13,7 @@ RUN yum makecache \
         openssh-clients openssl \
         rpm-build yum-utils createrepo \
         bash-completion sudo wget which zip unzip tree yajl net-tools \
-        sshpass jq \
+        jq \
  && yum clean all \
  && rm -rf /var/cache/yum/*
 
