@@ -94,8 +94,9 @@ RUN curl -s -fSL https://copr.fedorainfracloud.org/coprs/lbiaggi/vim80-ligatures
  && yum install -y ctags cscope \
  && yum clean all \
  && rm -rf /var/cache/yum/* \
- && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/.vimrc -o /root/.vimrc \
- && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/app/vim/install-vim-plugins.sh | bash -e
+ && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/app/vim/vim-plugins.tar.gz -o vim-plugins.tar.gz \
+ && tar -zxf vim-plugins.tar.gz -C /root \
+ && rm -rf vim-plugins.tar.gz
 
 ################################################################
 ENV POWERLINE_VERSION 1.17.0
