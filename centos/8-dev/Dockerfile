@@ -93,7 +93,7 @@ RUN yum install -y vim-enhanced \
  && rm -rf vim-plugins.tar.gz
 
 ################################################################
-ENV POWERLINE_VERSION 1.17.0
+ENV POWERLINE_VERSION 1.22.1
 
 RUN curl -fSL https://github.com/justjanne/powerline-go/releases/download/v$POWERLINE_VERSION/powerline-go-linux-amd64 -o /usr/local/bin/powerline-go \
  && chmod +x /usr/local/bin/powerline-go
