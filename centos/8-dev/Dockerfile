@@ -2,8 +2,8 @@ FROM centos:8
 
 ################################################################
 # use yum-repo mirrors
-RUN curl -fSL https://mirrors.aliyun.com/repo/Centos-7.repo -o /etc/yum.repos.d/CentOS-Base.repo \
- && curl -fSL https://mirrors.aliyun.com/repo/epel-7.repo -o /etc/yum.repos.d/epel.repo
+RUN rm -rf /etc/yum.repos.d/*.repo 
+ && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/os/centos/8/yum.repos.d/aliyun-mirror.repo -o /etc/yum.repos.d/aliyun.repo
 
 ################################################################
 RUN yum makecache \
