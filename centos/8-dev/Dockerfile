@@ -2,7 +2,7 @@ FROM centos:8
 
 ################################################################
 # use yum-repo mirrors
-RUN rm -rf /etc/yum.repos.d/*.repo 
+RUN rm -rf /etc/yum.repos.d/*.repo \
  && curl -fSL https://raw.githubusercontent.com/subchen/dev-box/master/os/centos/8/yum.repos.d/aliyun-mirror.repo -o /etc/yum.repos.d/aliyun.repo
 
 ################################################################
