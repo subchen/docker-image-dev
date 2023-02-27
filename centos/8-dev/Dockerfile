@@ -1,13 +1,19 @@
 FROM centos:8
 
+################################################################
+# use yum-repo mirrors
+RUN curl -fSL https://mirrors.aliyun.com/repo/Centos-7.repo -o /etc/yum.repos.d/CentOS-Base.repo \
+ && curl -fSL https://mirrors.aliyun.com/repo/epel-7.repo -o /etc/yum.repos.d/epel.repo
+
+################################################################
 RUN yum makecache \
- && yum install -y git \
- && yum install -y make cmake autoconf automake gcc gcc-c++ libtool \
- && yum install -y openssh-clients openssl \
- && yum install -y rpm-build yum-utils createrepo \
- && yum install -y bash-completion sudo wget which zip unzip tree yajl net-tools \
- && yum install -y epel-release \
- && yum install -y sshpass jq \
+ && yum install -y \
+        git \
+        make cmake autoconf automake gcc gcc-c++ libtool \
+        openssh-clients openssl \
+        rpm-build yum-utils createrepo \
+        bash-completion sudo wget which zip unzip tree yajl net-tools \
+        sshpass jq \
  && yum clean all \
  && rm -rf /var/cache/yum/*
 
