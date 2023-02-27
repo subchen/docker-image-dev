@@ -84,10 +84,8 @@ RUN yum install -y ruby ruby-devel rubygems rubygems-devel libffi-devel \
  && yum clean all \
  && rm -rf /var/cache/yum/*
 
-RUN gem install fpm travis \
- && rm -rf /root/.gem \
- && mkdir -p /root/.travis \
- && echo "checked_completion: true" > /root/.travis/config.yml
+RUN gem install fpm \
+ && rm -rf /root/.gem
 
 ################################################################
 RUN yum install -y vim-enhanced \
