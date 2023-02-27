@@ -18,7 +18,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 RUN yum install -y https://dl.bintray.com/subchen/yum-repo/the_silver_searcher-2.1.0-1.el8.x86_64.rpm
 
 ################################################################
-ENV GOVERSION 1.14.2
+ENV GOVERSION 1.20.1
 ENV GOROOT /usr/share/go
 
 ENV PATH $GOROOT/bin:$PATH
@@ -51,7 +51,7 @@ RUN curl -s -fSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/bi
 #VOLUME /root/.m2/repository
 
 ################################################################
-ENV NODE_VERSION 12.16.3
+ENV NODE_VERSION 16.19.1
 
 RUN curl -s -fSL https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz -o node.tar.gz \
  && tar -xzf node.tar.gz -C /usr/local --strip-components=1 \
@@ -87,8 +87,9 @@ RUN yum install -y vim-enhanced \
  && yum install -y ctags cscope \
  && yum clean all \
  && rm -rf /var/cache/yum/* \
- && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/config/.vimrc -o /root/.vimrc \
- && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/vim/update-vim-plugins.sh | bash -e
+ && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/app/vim/vim-plugins.tar.gz -o vim-plugins.tar.gz \
+ && tar -zxf vim-plugins.tar.gz -C /root \
+ && rm -rf vim-plugins.tar.gz
 
 ################################################################
 ENV POWERLINE_VERSION 1.17.0
@@ -126,7 +127,7 @@ RUN yum install -y openssh-clients \
  && rm -rf /var/cache/yum/* \
  && mkdir -p /root/.ssh \
  && ssh-keygen -q -N '' -t rsa -f /root/.ssh/id_rsa \
- && curl -s -fSL https://raw.githubusercontent.com/subchen/dev-box/master/ssh/config/config -o /root/.ssh/config
+ && echo -e "Host *\n  StrictHostKeyChecking no\n  UserKnownHostsFile /dev/null\n  LogLevel ERROR" > /root/.ssh/config
 
 ################################################################
 #VOLUME /root
