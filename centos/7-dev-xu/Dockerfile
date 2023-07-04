@@ -41,7 +41,7 @@ VOLUME /root
 
 ################################################################
 RUN yum install -y gcc make cmake \
- && yum install -y zlib zlib-devel bzip2-devel libffi libffi-devel readline-devel \
+ && yum install -y zlib zlib-devel bzip2-devel libffi libffi-devel readline-devel sqlite-devel \
  && yum install -y openssl-devel openssl11 openssl11-devel \
  && yum clean all \
  && rm -rf /var/cache/yum/*
@@ -51,7 +51,7 @@ RUN cd /root/ \
  && tar -zxf Python-3.11.2.tgz \
  && rm -rf Python-3.11.2.tgz \
  && cd ./Python-3.11.2 \
- && CFLAGS=$(pkg-config --cflags openssl11) LDFLAGS=$(pkg-config --libs openssl11) ./configure --prefix=/usr/local/python-3.11.2 \
+ && CFLAGS=$(pkg-config --cflags openssl11) LDFLAGS=$(pkg-config --libs openssl11) ./configure --enable-loadable-sqlite-extensions --prefix=/usr/local/python-3.11.2 \
  && make \
  && make install \
  && rm -rf ./Python-3.11.2
