@@ -63,10 +63,16 @@ RUN ln -s /usr/local/python-3.11.2/bin/python3 /usr/local/bin/python3 \
 
 
 ################################################################
-## install ffmpge
+## install ffmpeg
 RUN rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro \
  && yum install -y http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm \
  && yum install -y ffmpeg ffmpeg-devel \
+ && yum clean all \
+ && rm -rf /var/cache/yum/*
+
+################################################################
+# install java 8
+RUN yum install -y java-1.8.0-openjdk \
  && yum clean all \
  && rm -rf /var/cache/yum/*
 
